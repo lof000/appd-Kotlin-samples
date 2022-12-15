@@ -1,0 +1,23 @@
+--------
+ 
+## Início instalação do agente AppDynamics
+RUN mkdir -p /opt/appdynamics/ \
+    && cd /opt/appdynamics \
+    && curl https://<URL DOWNLOAD AGENT>/AppServerAgent.zip --output AppServerAgent.zip \&& jar xvf AppServerAgent.zip \
+    && rm -f AppServerAgent.zip \
+    && chown -R docker /opt/appdynamics/
+ 
+# Add plugin para instrumentação do Kotlin
+COPY KotlinAgentPlugin-1.0.jar /opt/appdynamics/
+COPY move.sh /opt/appdynamics/
+RUN chown -R docker /opt/appdynamics/move.sh
+RUN chown -R docker /opt/appdynamics/KotlinAgentPlugin-1.0.jar
+RUN ./opt/appdynamics/move.sh
+# Add plugin para instrumentação do Kotlin e Kotlin+Kafka - FIM
+ 
+## Fim instalação do agente AppDynamics
+ 
+....
+
+
+

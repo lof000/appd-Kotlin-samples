@@ -1,0 +1,22 @@
+----------------------
+- Exemplo de utilização do SDK
+----------------------
+
+1 - Adicionar no build.gradle.kts
+
+dependencies {
+    implementation("com.appdynamics.agent:agent-api:20.6.0.30246")
+}
+
+EX: em /Users/ledeoliv/WORK/LABS/ITAU/KOTLIN/grpc-kotlin-SAMPLE/examples/server
+
+2 - Na classe onde voce quer marcar inicio ou fim de uma transação
+
+//START TRANSACTION
+val transaction = AppdynamicsAgent.startTransaction("TesteVO", null, EntryTypes.POJO, false);
+
+//END TRANSACTION
+transaction.end();
+
+
+Ex no arquivo : HelloWorldServer.kt
