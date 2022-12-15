@@ -1,0 +1,17 @@
+------------
+#instalando appdynamics
+RUN mkdir -p /opt/appdynamics/
+ 
+ADD https://<URL DOWNLOAD AGENTE>/AppServerAgent.zip /opt/appdynamics/
+RUN unzip /opt/appdynamics/AppServerAgent.zip -d /opt/appdynamics/ && rm -f /opt/appdynamics/AppServerAgent.zip
+ 
+# Add plugin para instrumentação do Kotlin e Kotlin+Kafka - INICIO
+COPY custom-interceptors.xml /opt/appdynamics/
+COPY KotlinAgentPlugin-1.0.jar /opt/appdynamics/
+COPY move.sh /opt/appdynamics/
+RUN ./opt/appdynamics/move.sh
+# Add plugin para instrumentação do Kotlin e Kotlin+Kafka - FIM
+....
+
+
+
